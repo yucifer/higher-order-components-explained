@@ -1,17 +1,23 @@
 import React from 'react';
+import withData from '../with-data/with-data';
 
-import withData from '../../with-data';
+const UserList = ({data}) => {
 
-const UserList = ({ data }) => (
+  return (
   <div className='container user-list'>
-    <h1> Users List </h1>
-    {data.map(user => (
-      <div className='post' key={user.id}>
-        <h1> {user.name} </h1>
-        <h2> {user.email} </h2>
-      </div>
-    ))}
+    {
+      data.map(user => {
+        return (
+          <div className="post" key={user.id}>
+            <h1>{user.name}</h1>
+            <p>{user.email}</p>
+          </div>
+        )
+      })
+    }
+   
   </div>
-);
+  )  
+};
 
 export default withData(UserList);

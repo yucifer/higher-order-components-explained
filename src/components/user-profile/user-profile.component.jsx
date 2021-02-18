@@ -1,19 +1,63 @@
 import React from 'react';
+import WithData from '../with-data/with-data';
 
-import withData from '../../with-data';
 
-const UserProfile = ({ data, name, email }) => (
-  <div className='container'>
-    <h1>{name}</h1>
-    <h2>{email}</h2>
-    Posts:
-    {data.map(post => (
-      <div className='post' key={post.id}>
-        <h1>{post.title}</h1>
-        <p> {post.body} </p>
-      </div>
-    ))}
-  </div>
-);
+const UserProfile = (props) => {
+  console.log('User-Profile' ,props);
+  const {name, email,data} = props
+  return (
+        <div className="container">
+      <h3>{name}</h3>
+      <p>{email}</p>
+      {
+        data.length > 1 ? 
+        data.map(post => {
+          return ( 
+            <div key={post.id} className="post">
+              <h1>{post.title}</h1>
+              <p>{post.body}</p>
+            </div>
+        )
+        })
+        : 
+        <h1>Loading......</h1>
+      }
+    </div>
+  )
+}
 
-export default withData(UserProfile);
+
+export default WithData(UserProfile, 'https://jsonplaceholder.typicode.com/posts');
+
+// const UserProfile = ({ name, email }) => {
+
+//   const [posts, setPosts] = useState([]);
+  
+//   useEffect(() => {  
+//     fetch('https://jsonplaceholder.typicode.com/posts')
+//       .then(response => response.json())
+//       .then(data => setPosts(data.slice(0,3)))   
+//   }, [posts])
+
+//   return (
+//     <div className="container">
+//       <h3>{name}</h3>
+//       <p>{email}</p>
+//       {
+//         posts.length > 1 ? 
+//         posts.map(post => {
+//           return ( 
+//             <div key={post.id} className="post">
+//               <h1>{post.title}</h1>
+//               <p>{post.body}</p>
+//             </div>
+//         )
+//         })
+//         : 
+//         <h1>Loading......</h1>
+//       }
+//     </div>
+//   ) 
+//   };
+
+// export default UserProfile;
