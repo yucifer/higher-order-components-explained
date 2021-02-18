@@ -8,7 +8,7 @@ import "./App.scss";
 function App() {
   return (
     <div className="App">
-      <h1>HOC USAGE</h1>
+      <h1>HOC USAGE UPDATED</h1>
       <UserList dataSource="https://jsonplaceholder.typicode.com/users" />
       <UserProfile
         dataSource="https://jsonplaceholder.typicode.com/posts"
